@@ -20,7 +20,7 @@ class Validation {
    }
    setSurname(){
     let input = document.getElementById('surnameInput');
-    if(this.validateEmail('surnameInput')){
+    if(this.validateName('surnameInput')){
         this.setSurname = input.value;}
    }
    setEmail(){
@@ -49,18 +49,19 @@ class Validation {
                    changeValidationFail(inputSelectionField);
                    return false;
                }
-               break;
            case 'surnameInput':
                if (lengthNotZero(inputValue)) {
                    this.lastNameValidation = true;
                    changeValidationPass(inputSelectionField);
+                   console.log('surname fail');
                    return true;
                } else {
                    this.lastNameValidation = false;
                    changeValidationFail(inputSelectionField);
+                   console.log('surname Fail');
                    return false;
                }
-               break;
+
        }
    }
    
@@ -163,27 +164,7 @@ var check = new Validation();
 document.addEventListener("DOMContentLoaded",(event)=>{
     console.log('loaded');
 });
-let input = null;
-for(let i =0;i<5;i++)
-{
-    switch(i){
-        case 0:
-             input = 'nameInput';
-            break;
-        case 1:
-             input = 'surnameInput';
-             break;
-        case 2:
-            input = 'emailInput';
-            break;
-        case 3:
-            input = 'createPasswordInput';
-            break;
-        case 4:
-            input = 'confirmPasswordInput';
-            break;
-    }
-    document.getElementById(input).addEventListener('blur',selectSetter(input));
-    console.log(input);
-}
+for (const input of ["nameInput", "surnameInput", "emailInput", "createPasswordInput", "confirmPasswordInput"]) {
+    document.getElementById(input).addEventListener('onchange',selectSetter(input));
+};
 console.log(check.name);
