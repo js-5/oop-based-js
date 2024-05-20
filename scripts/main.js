@@ -16,12 +16,12 @@ class Validation {
    setName(){
     let input = document.getElementById('nameInput');
     if(this.validateName('nameInput'))
-        this.name = input.value;
+        this.firstname = input.value;
    }
    setSurname(){
     let input = document.getElementById('surnameInput');
     if(this.validateName('surnameInput')){
-        this.setSurname = input.value;}
+        this.lastName = input.value;}
    }
    setEmail(){
     let input = document.getElementById('emailInput');
@@ -53,7 +53,7 @@ class Validation {
                if (lengthNotZero(inputValue)) {
                    this.lastNameValidation = true;
                    changeValidationPass(inputSelectionField);
-                   console.log('surname fail');
+                   console.log('surname pass');
                    return true;
                } else {
                    this.lastNameValidation = false;
@@ -123,8 +123,9 @@ class Validation {
 //Miscellaneous 
 function lengthNotZero(str)
 {
-   if(str.length === 0);
-    return false;
+    if(str.length == 0)
+        return false;
+    else return true;
 } 
 
 function changeValidationFail(inputBox)
@@ -139,32 +140,44 @@ function changeValidationPass(inputBox)
     input.classList.add('valid');
     input.classList.remove('invalid');  
 }
-function selectSetter(inputBox)
-{
-    switch(inputBox){
-        case 'nameInput':
-            check.setName();
-            break;
-        case 'surnameInput':
-            check.setSurname();
-            break;
-        case 'emailInput':
-            check.setEmail();
-            break;
-        case 'createPasswordInput':
-            check.validatePassword();
-            break;
-        case 'confirmPasswordInput':
-            check.setPassword();
-            break;
-    }
-}
+
 //DOM EVENT LISTENERS
 var check = new Validation();
 document.addEventListener("DOMContentLoaded",(event)=>{
     console.log('loaded');
 });
-for (const input of ["nameInput", "surnameInput", "emailInput", "createPasswordInput", "confirmPasswordInput"]) {
-    document.getElementById(input).addEventListener('onchange',selectSetter(input));
-};
-console.log(check.name);
+document.getElementById('nameInput').addEventListener('blur',(event)=>(check.setName()));
+document.getElementById('surnameInput').addEventListener('blur',(event)=>(check.setSurname()));
+document.getElementById('emailInput').addEventListener('blur',(event)=>(check.setEmail()));
+document.getElementById('createPasswordInput').addEventListener('blur',(event)=>(check.validatePassword()));
+document.getElementById('confirmPasswordInput').addEventListener('blur',(event)=>(check.setPassword()));
+document.getElementById('planSelectOne').addEventListener('change',(event)=>checkboxChecked('planSelectOne'));
+document.getElementById('planSelectTwo').addEventListener('change',(event)=>checkboxChecked('planSelectTwo'));
+document.getElementById('planSelectThree').addEventListener('change',(event)=>checkboxChecked('planSelectThree'));
+
+function checkboxChecked(checkedbox)
+{
+    console.log(checkedbox);
+    if(checkedbox == 'planSelectOne'){
+        document.getElementById('planSelectTwo').checked = false;
+        document.getElementById('planSelectThree').checked = false;
+        document.getElementById('plan-type').outerHTML = "<p id = 'plan-type' class = 'plan-type'> Standard Plan <br> (Mobile)</p>";
+        document.getElementById('plan-cost').outerHTML = "<p id = 'plan-cost' class = 'plan-cost'> R69.00 </p>";
+        document.getElementById('total-cost').innerHTML = "R69.00"
+    }
+    else if(checkedbox == 'planSelectTwo'){
+        document.getElementById('planSelectOne').checked = false;
+        document.getElementById('planSelectThree').checked = false;
+        document.getElementById('plan-type').outerHTML = "<p id = 'plan-type' class = 'plan-type'> Premium Plan <br> (3-Devices)</p>";
+        document.getElementById('plan-cost').outerHTML = "<p id = 'plan-cost' class = 'plan-cost'> R109.00 </p>";
+        document.getElementById('total-cost').innerHTML = "R109.00"
+    }
+    else if(checkedbox == 'planSelectThree'){
+        document.getElementById('planSelectOne').checked = false;
+        document.getElementById('planSelectTwo').checked = false;
+        document.getElementById('plan-type').outerHTML = "<p id = 'plan-type' class = 'plan-type'> Standard Plan <br> (Walled-Garden Apple-Plan)</p>";
+        document.getElementById('plan-cost').outerHTML = "<p id = 'plan-cost' class = 'plan-cost'> R690.00 </p>";
+        document.getElementById('total-cost').innerHTML = "R690.00"
+    }
+
+}

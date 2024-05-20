@@ -70,7 +70,19 @@ footer
     display: flex;
     flex-direction: column;
 }
-
+.select-plan{
+    display: flex;
+    flex-direction: column;
+}
+.plan-one{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.check-box{
+    width: 1.5rem;
+  
+}
 .inputbox
 {
     display: flex;
@@ -113,7 +125,7 @@ form{
     height: 100%;
     grid-column: span 2;
 }
-input,.create-account{
+.text-box,.create-account{
     min-width: 80%;
     flex-grow: 1;
     color:black;

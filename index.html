@@ -19,25 +19,39 @@
             <article>
                 <form>
                     <div class="input-box">
-                        <input type="text" name="name" id = "nameInput"  placeholder ="your name here" required/>
-                        <input type="text" name="surname" id = "surnameInput"  placeholder="your surname here" required/>
-                        <input type="email" name="email" id = "emailInput"  placeholder="example@123mail.com" required/>
-                        <input type="password" name="password" id = "createPasswordInput" placeholder="create a password" required/>
-                        <input type="password" name="confirm-password" id ="confirmPasswordInput"  placeholder="confirm password" required/>
-                        <input type="submit" class="create-account"  value="Create Account" />
+                        <input class = "text-box" type="text" name="name" id = "nameInput"  placeholder ="your name here" required/>
+                        <input class = "text-box" type="text" name="surname" id = "surnameInput"  placeholder="your surname here" required/>
+                        <input class = "text-box" type="email" name="email" id = "emailInput"  placeholder="example@123mail.com" required/>
+                        <input class = "text-box" type="password" name="password" id = "createPasswordInput" placeholder="create a password" required/>
+                        <input class = "text-box" type="password" name="confirm-password" id ="confirmPasswordInput"  placeholder="confirm password" required/>
+                        <input class = "text-box" type="submit" class="create-account"  value="Create Account" />
                     </div>
                 </form>
                 <section class="checkout-box">
-                    <h3>Your Plan</h3>  
+                    <h3>Select your plan</h3>  
                     <section class="checkout">
+                        <section class = "select-plan">
+                            <section class = "plan-one">
+                                <p>Standard</p>
+                                <input class = "check-box" type="checkbox" name = "planSelect" id ="planSelectOne" value = "Standard">
+                            </section>
+                            <section class = "plan-one">
+                                <p>Premium</p>
+                                <input class = "check-box" type="checkbox" name = "planSelect" id ="planSelectTwo" value = "Premium">
+                            </section>
+                            <section class = "plan-one">
+                                <p>MAX</p>
+                                <input class = "check-box" type="checkbox" name = "planSelect" id ="planSelectThree" value = "ProMAX-ULTIMATE APPLE MARKETING">
+                            </section>
+                        </section>
                         <section class="checkout-plan-description">
-                            <p class="plan-type">Premier League <br> (Mobile)</p>
-                            <p class="plan-cost">R69.00</p>
+                            <p id = "plan-type" class="plan-type">Premier League <br> (Mobile)</p>
+                            <p id = "plan-cost" class="plan-cost">R69.00</p>
                         </section>
                         <p class="line"></p>
                         <section class="cart-total">
                             <p class="todays-total">Today's total</p>
-                            <p class="checkout-total">R69.00</p>
+                            <p id = 'total-cost' class="checkout-total">R69.00</p>
                         </section>
                         <section class="checkout-sub-notice">
                             <p class="checkout-sub-notice">Then,the standard Monthly Fee will apply.</p>
