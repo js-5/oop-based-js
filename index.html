@@ -8,16 +8,20 @@
   </head>
   <body>
     <header class="container-fluid">
-        <h1 class = "container text-left">FloMax</h1>
+        <h1 class="fw-bold container text-left">FloMax</h1>
     </header>
-    <main class = "p-3 bg-secondary border border-secondary-subtle rounded-3 w-75 mx-auto">
-        <h2 class = "container text-center "> create your account today</h2>
+    <main class="p-3 bg-secondary border border-secondary-subtle rounded-3 w-75 mx-auto">
+        <h2 class="container text-center fw-bold"> create your account today</h2>
         <div class="container">
-            <div class=" row mx-auto gx-5 border- bg-secondary-subtle border-secondary rounded-3 p-3">
+            <div class="row mx-auto gx-5 border- bg-secondary-subtle border-secondary rounded-3 p-3">
                 <form class="col-lg-7 col-xl-6">
-                    <div class = "mb-3">
-                        <label for="nameInput" class = "form-label">Name</label>
-                        <input type = "form-control" id = "nameInput">
+                    <div class="mb-3">
+                        <label for="nameInput" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="nameInput">
+                    </div>
+                    <div class ="mb-3">
+                        <label for="surnameInput" class = "form-label">Surname</label>
+                        <input type ="text" class="form-control" id="surnameInput">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -28,26 +32,37 @@
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1">
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                <div class="col-lg-5 col-xl-6 d-flex justify-content-between">
-                    <div class = "form-check form-check-inline  ">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">Standard</label>
+                    <div class="col-lg-5 col-xl-6 d-flex justify-content-between text-center">
+                        <div>
+                            <h3 >Please select your plan</h3>
+                            <input type="radio" class="btn-check" name="options-base" id="subscriptionStandard" autocomplete="off" checked>
+                            <label class="btn" for="subscriptionStandard">Standard</label>
+                        
+                            <input type="radio" class="btn-check" name="options-base" id="subscriptionPremium" autocomplete="off">
+                            <label class="btn" for="subscriptionPremium">Premium</label>
+                        
+                            <input type="radio" class="btn-check" name="options-base" id="subscriptionMax" autocomplete="off">
+                            <label class="btn" for="subscriptionMax">Max</label>
+                            <div>
+                                <p id="checkout-text">This is where text will tell you the price of our stupid service.If you accept this there will be financial implecations, and we'll maybe steal your organs too.</p>
+                                <p id="checkout-seperation"></p>
+                                <div class="bg-secondary border border-secondary-subtle rounded-3 d-flex justify-content-between mb-3 px-3 pt-2">
+                                    <div id="checkout-description-box">
+                                        <p id="checkout-description">Apple pricing.exe</p>
+                                    </div>
+                                    <div id="checkout-price-box">
+                                        <p id="checkout-price">R50000.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-check form-check-inline ">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">Premium</label>
-                    </div>
-                    <div class="form-check form-check-inline ">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" >
-                        <label class="form-check-label" for="inlineCheckbox3">Max</label>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
