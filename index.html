@@ -6,67 +6,125 @@
     <title>Welcome v1_01</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body {
+            /* The image used */
+            background-image: url("bgImage.jpg");
+
+            /* Full height */
+            height: 100vh;
+
+            /* Center and scale the image */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+        }
+        @media (max-width: 767.98px) {
+            .bg-image {
+                background-position: top;
+            }}
+        .transparent-div-1 {
+            background-color: rgba(240, 205, 177, 0.205); 
+        }
+        .transparent-div-2 {
+            background-color: rgba(243, 194, 155, 0.20); 
+        }
+    </style>
   </head>
   <body>
-    <header class="container-fluid">
-        <h1 class="fw-bold container text-left">Floware</h1>
-    </header>
-    <main class="p-3 bg-secondary border border-secondary-subtle rounded-3 w-75 mx-auto">
-        <h2 class="container text-center fw-bold"> create your account today</h2>
-        <div class="container">
-            <div class="row mx-auto gx-5 border- bg-secondary-subtle border-secondary rounded-3 p-3">
-                <form class="col-lg-7 col-xl-6">
-                    <div class="mb-3">
-                        <label for="nameInput" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="nameInput">
-                    </div>
-                    <div class ="mb-3">
-                        <label for="surnameInput" class = "form-label">Surname</label>
-                        <input type ="text" class="form-control" id="surnameInput">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-                    <div class="col-lg-5 col-xl-6 d-flex justify-content-between text-center">
-                        <div x-data="{selection:'Standard subscription',pricing:'R200.00'}">
-                            <h3 >Please select your plan</h3>
-                            <input type="radio" class="btn-check" name="options-base" id="subscriptionStandard" autocomplete="off" checked x-on:click="selection='Standard subscription';pricing='R199.00'">
-                            <label class="btn" for="subscriptionStandard">Standard</label>
+    <div class="bg-image " >
+        <header class="container-fluid">
+            <h1 class="fw-bold display-1 container text-left">Floware</h1>
+        </header>
+        <main class="transparent-div-1 fs-4 p-3 border border-secondary-subtle rounded-3 w-75 mx-auto pb-5">
+            <h2 class="container text-center fw-bold"> create your account today</h2>
+            <div class="container">
+                <div class=" transparent-div-2 row mx-auto gx-5 border-secondary rounded-3 p-3" x-data="passwordValidation">
+                    <form class="col-lg-7 col-xl-6">
+
+                        <div class="mb-3" x-data="{ inputValue: '', isInvalid: false }" >
+                            <label for="nameInput" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="nameInput" 
+                            x-model="inputValue" 
+                            :class="{'is-invalid':isInvalid}" 
+                            @blur="isInvalid = inputValue ===''">
+                            <div class="invalid-feedback">Please provide valid input.</div>
+                        </div>
+
+                        <div class ="mb-3" x-data="{ inputValue: '', isInvalid: false }">
+                            <label for="surnameInput" class = "form-label">Surname</label>
+                            <input type ="text" class="form-control" id="surnameInput"
+                                x-model="inputValue" 
+                                :class="{'is-invalid':isInvalid}" 
+                                @blur="isInvalid = inputValue ===''">
+                            <div class="invalid-feedback">Please provide valid input.</div>
+                        </div>
+
+                        <div class="mb-3" x-data="emailValidation">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                x-model="email"
+                                :class="{'is-invalid': isInvalid}"
+                                @blur="validateEmail">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <div class="invalid-feedback">Please provide a valid email address.</div>
+                        </div>
                         
-                            <input type="radio" class="btn-check" name="options-base" id="subscriptionPremium" autocomplete="off" x-on:click="selection='Premium subscription';pricing='R249.00'">
-                            <label class="btn" for="subscriptionPremium">Premium</label>
-                        
-                            <input type="radio" class="btn-check" name="options-base" id="subscriptionMax" autocomplete="off"x-on:click="selection='You have gone full retard and selected the max apple tax pricing where you get nothing extra but you give us more money.';pricing='R499.00'">
-                            <label class="btn" for="subscriptionMax">Max</label>
-                            <div>
-                                <p id="checkout-text" x-text="selection"></p>
-                                <p id="checkout-seperation"></p>
-                                <div class="bg-secondary border border-secondary-subtle rounded-3 d-flex justify-content-between mb-3 px-3 pt-2">
-                                    <div id="checkout-description-box">
-                                        <p id="checkout-description">Apple pricing.exe</p>
-                                    </div>
-                                    <div id="checkout-price-box">
-                                        <p id="checkout-price" x-text="pricing"></p>
+                        <div class="mb-3" x-data="{ inputValue: '', isInvalid: false }">
+                            <label for="inputPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="inputPassword"
+                                x-model="password" 
+                                :class="{'is-invalid':isInvalid}" 
+                                @blur="isInvalid = password ===''"
+                                @blur="checkPasswords()">
+                            <div class="invalid-feedback">Please provide a valid password.</div>
+                        </div>
+
+                        <div class="mb-3" >
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword"
+                                x-model="confirmPassword" 
+                                @blur="checkPasswords()"
+                                :class="{'is-invalid':isInvalid}">
+                            <div class="invalid-feedback" >Passwords do not match.</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+                        <div class="col-lg-5 col-xl-6 d-flex justify-content-between text-center">
+                            <div class="flex-grow-1" x-data="{selection:'Standard subscription',pricing:'R199.00'}">
+                                <h3 class="fw-bold" >Please select your plan</h3>
+                                <input type="radio" class="btn-check " name="options-base" id="subscriptionStandard" autocomplete="off" checked x-on:click="selection='Standard subscription';pricing='R199.00'">
+                                <label class="btn" for="subscriptionStandard">Standard</label>
+                            
+                                <input type="radio" class="btn-check" name="options-base" id="subscriptionPremium" autocomplete="off" x-on:click="selection='Premium subscription';pricing='R249.00'">
+                                <label class="btn" for="subscriptionPremium">Premium</label>
+                            
+                                <input type="radio" class="btn-check" name="options-base" id="subscriptionMax" autocomplete="off"x-on:click="selection='You have gone full retard and selected the max apple tax pricing where you get nothing extra but you give us more money.';pricing='R499.00'">
+                                <label class="btn" for="subscriptionMax">Max</label>
+                                <div>
+                                    <p class="fs-4" id="checkout-text" x-text="selection"></p> 
+                                    <p id="checkout-seperation"></p>
+                                    <div class=" fs-3 fw-bolder d-flex justify-content-between mb-3 px-3 pt-2">
+                                        <div id="checkout-description-box">
+                                            <p id="checkout-description">Apple pricing.exe</p>
+                                        </div>
+                                        <div id="checkout-price-box">
+                                            <p id="checkout-price" x-text="pricing"></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
             </div>
-        </div>
-    </main>
+            
+        </main>
+    
+    </div> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+    <script src="scripts/main.js"></script>
+</body>
 </html>
